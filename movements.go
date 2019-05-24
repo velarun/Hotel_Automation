@@ -39,6 +39,11 @@ func (h *Handler) ParsingInput(input chan string, erro chan error) {
 		return
 	}
 
+	if len(char) == 0 {
+		erro <- errors.New("Sensor Input Error")
+		return
+	}
+
 	var matches []string
 	var flag bool
 	r, _ := regexp.Compile("No.*Floor\\s([\\d]+),.*Sub\\scorridor\\s([\\d]+).*minute.*")
